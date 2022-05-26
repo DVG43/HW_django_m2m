@@ -14,3 +14,20 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Topic(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Раздел',)
+    topiks = models.ManyToManyField(Article, throught='Scope')
+
+    def __str__(self):
+        return self.title
+
+
+class Scope(models.Model):
+    article = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Article, on_delete=models.CASCADE)
+    tag = models.CharField(max_length=50)
+
+    def __str__(self):
+        return '{0}_{1}'.format(self.article, self.topic)
