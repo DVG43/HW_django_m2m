@@ -20,17 +20,13 @@ class ScopeInlineFormset(BaseInlineFormSet):
             raise ValidationError('Тут всегда ошибка')
         return super().clean()  # вызываем базовый код переопределяемого метода
 
-
-
-class ScopeInline(admin.TabularInline):
+сlass ScopeInline(admin.TabularInline):
       model = Scope
       formset = ScopeInlineFormset
 
-
-
-
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
+    list_display = ['id', 'Название', 'Текст', 'Дата публикации','Изображение', ]
     inlines = (ScopeInline,) #возможно скобки []
 
 @admin.register(Topic)
