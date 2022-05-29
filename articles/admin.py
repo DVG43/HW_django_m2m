@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
+from .models import  Scope, Article, Topic
 
 #Однако в этой задаче вам потребуется добавить дополнительную проверку при сохранении объекта.
 #Для этого в объекте Inline'а можно переопределить атрибут formset, который должен указывать
 #на специальный класс типа BaseInlineFormSet, нужный для обработки списка однотипных форм
 #(каждая для своей связи).
-from .models import Article, Scope, Topic
 
 class ScopeInlineFormset(BaseInlineFormSet):
     def clean(self):
@@ -31,4 +31,4 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-      inlines = (ScopeInline,) #возможно скобки []
+    inlines = (ScopeInline,) #возможно скобки []
