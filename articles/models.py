@@ -20,8 +20,8 @@ class Topic(models.Model):
     name = models.CharField(max_length=50, verbose_name='Раздел',)
     topiks = models.ManyToManyField(Article, related_name='topics', through='Scope', )
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
 
 
 class Scope(models.Model):

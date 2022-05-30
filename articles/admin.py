@@ -8,25 +8,25 @@ from .models import  Scope, Article, Topic
 #на специальный класс типа BaseInlineFormSet, нужный для обработки списка однотипных форм
 #(каждая для своей связи).
 
-class ScopeInlineFormset(BaseInlineFormSet):
-    def clean(self):
-        for form in self.forms:
-            # В form.cleaned_data будет словарь с данными
-            # каждой отдельной формы, которые вы можете проверить
-            form.cleaned_data
-            # вызовом исключения ValidationError можно указать админке о наличие ошибки
-            # таким образом объект не будет сохранен,
-            # а пользователю выведется соответствующее сообщение об ошибке
-            raise ValidationError('Тут всегда ошибка')
-        return super().clean()  # вызываем базовый код переопределяемого метода
+# class ScopeInlineFormset(BaseInlineFormSet):
+#     def clean(self):
+#         for form in self.forms:
+#             # В form.cleaned_data будет словарь с данными
+#             # каждой отдельной формы, которые вы можете проверить
+#             form.cleaned_data
+#             # вызовом исключения ValidationError можно указать админке о наличие ошибки
+#             # таким образом объект не будет сохранен,
+#             # а пользователю выведется соответствующее сообщение об ошибке
+#             raise ValidationError('Тут всегда ошибка')
+#         return super().clean()  # вызываем базовый код переопределяемого метода
 
 class ScopeInline(admin.TabularInline):
       model = Scope
-      formset = ScopeInlineFormset
+      #formset = ScopeInlineFormset
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['id', 'Название', 'Текст', 'Дата публикации','Изображение', ]
+    #list_display = ['id', 'Название', 'Текст', 'Дата публикации', 'Изображение', ]
     inlines = (ScopeInline,) #возможно скобки []
 
 @admin.register(Topic)
