@@ -20,7 +20,7 @@ class ScopeInlineFormset(BaseInlineFormSet):
             raise ValidationError('Тут всегда ошибка')
         return super().clean()  # вызываем базовый код переопределяемого метода
 
-сlass ScopeInline(admin.TabularInline):
+class ScopeInline(admin.TabularInline):
       model = Scope
       formset = ScopeInlineFormset
 
