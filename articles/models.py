@@ -17,8 +17,8 @@ class Article(models.Model):
 
 
 class Scope(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Раздел',)
-    is_main = models.BooleanField(verbose_name='Основной',)
+    name = models.CharField(max_length=50, default='нет раздела', verbose_name='Раздел',)
+    is_main = models.BooleanField(default=True, verbose_name='Основной',)
     scopes = models.ManyToManyField(Article, related_name='scopes', through='Tag', )
 
     # def __str__(self):
