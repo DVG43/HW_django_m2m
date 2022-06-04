@@ -16,18 +16,19 @@ class Article(models.Model):
         return self.title
 
 
-class Topic(models.Model):
+class Scope(models.Model):
     name = models.CharField(max_length=50, verbose_name='Раздел',)
-    topiks = models.ManyToManyField(Article, related_name='topics', through='Scope', )
+    is_main = models.BooleanField(verbose_name='Основной',)
+    scopes = models.ManyToManyField(Article, related_name='scopes', through='Tag', )
 
     # def __str__(self):
     #     return self.title
 
 
-class Scope(models.Model):
-    article = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    topic = models.ForeignKey(Article, on_delete=models.CASCADE)
-    tag = models.CharField(max_length=50)
+class Tag(models.Model):
+    article = models.ForeignKey(Scope, on_delete=models.CASCADE)
+    scope = models.ForeignKey(Article, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
         return '{0}_{1}'.format(self.article, self.topic)
